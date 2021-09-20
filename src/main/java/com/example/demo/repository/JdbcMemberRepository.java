@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.sql.DataSource;
 import javax.xml.crypto.Data;
 
-public class JdbcMemberRepository implements MemberRepository{
+public class JdbcMemberRepository implements JpaR{
 
     private final DataSource dataSource;
 
