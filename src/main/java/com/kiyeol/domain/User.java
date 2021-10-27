@@ -16,10 +16,12 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -29,16 +31,17 @@ import lombok.Setter;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="uid")
+    @Column
     long uid;
-    @Column(name="id",nullable = false)
+    @Column
     String id;
-    @Column(name="pw",nullable = false)
+    @Column
     String pw;
-    @Column(name="name",nullable = false)
+    @Column
     String name;
-    @Column(name="score")
-    int score;
-
+    @Column
+    int point;
+    @Column
+    int ticket;
 }
 
