@@ -1,6 +1,7 @@
 package com.kiyeol.controller;
 
 import com.kiyeol.domain.User;
+import com.kiyeol.domain.WorkLog;
 import com.kiyeol.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,7 @@ public class UserController {
         Optional<User> user = userRepository.findById(uid);
         System.out.println("user : "+user.toString());
         user.ifPresent(selectUser ->{
-            selectUser.setPoint(selectUser.getPoint()+1);
+            selectUser.setPoint(selectUser.getPoint()+100);
             User newUser = userRepository.save(selectUser);
             System.out.println("user: "+newUser);
         });
@@ -83,5 +84,6 @@ public class UserController {
 
         return ResponseEntity.ok(userRepository.findById(uid));
     }
+
 
 }
