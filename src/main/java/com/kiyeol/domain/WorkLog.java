@@ -31,8 +31,6 @@ public class WorkLog {
     @Column
     int id;
 
-//
-//
     @ManyToOne(targetEntity = User.class,fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     @JoinColumn(name="user_id")
     User user_id;
