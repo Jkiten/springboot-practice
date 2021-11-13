@@ -2,18 +2,32 @@ plugins {
 	id 'org.springframework.boot' version '2.5.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+//	id 'war'
 }
 
 group = 'com.kiyeol'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '1.8'
+
+//bootJar {
+//   jar.enabled = true
+//}
+//bootWar {
+//	archiveName("demo.war")
+//}
+//
+//jar {
+//   manifest {
+//       attributes 'Main-Class': 'com.kiyeol.KiyeolApplication'
+//    }
+//}
 
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
 }
-
+//mainClassName = "com.kiyeol.KiyeolApplication"
 repositories {
 	mavenCentral()
 }
@@ -34,3 +48,4 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+//apply plugin: 'war'
