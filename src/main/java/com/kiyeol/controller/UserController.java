@@ -1,5 +1,6 @@
 package com.kiyeol.controller;
 
+import com.kiyeol.domain.ChangePwForm;
 import com.kiyeol.domain.User;
 import com.kiyeol.domain.WorkLog;
 import com.kiyeol.repository.UserRepository;
@@ -41,7 +42,20 @@ public class UserController {
         //로그인하기
         return ResponseEntity.ok(userRepository.login(user.getId(),user.getPw()));
     }
+    @PostMapping("/changePw")
+    public ResponseEntity changePw(@RequestBody ChangePwForm cpf){
+        System.out.println(cpf.getId()+cpf.getNewpw());
+        Optional<User> user = userRepository.id_searchUser(cpf.getId());
 
+        user.ifPresent(selectUser ->{
+            System.out.println(selectUser.getName());
+            selectUser.setPw(cpf.getNewpw());
+            User newUser = userRepository.save(selectUser);
+            System.out.println("user: "+newUser);
+        });
+        //로그인하기
+        return ResponseEntity.ok(user);
+    }
     //유저들(포인트,이름)
     @GetMapping("/users")
     public ResponseEntity<List<User>> Users(){
@@ -70,6 +84,7 @@ public class UserController {
         System.out.println("searchUser name : "+name);
         return ResponseEntity.ok(userRepository.searchUser(name));
     }
+    
     //유저 점수 더하기
     @GetMapping("/userScore")
     public ResponseEntity<Optional<User>> UpdateScore(@RequestParam Long uid){
@@ -80,10 +95,18 @@ public class UserController {
             User newUser = userRepository.save(selectUser);
             System.out.println("user: "+newUser);
         });
+
         System.out.println("user save: "+user.toString());
 
         return ResponseEntity.ok(userRepository.findById(uid));
     }
+    //유저 점수 더하기
+    @GetMapping("/findId")
+    public ResponseEntity<Optional<User>> UpdateScore(@RequestParam String phone){
+        Optional<User> user = userRepository.phone_searchUser(phone);
+        return ResponseEntity.ok(user);
+    }
+
 
 
 }

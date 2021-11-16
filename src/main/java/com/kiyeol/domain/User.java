@@ -44,6 +44,8 @@ public class User {
     @Column
     String pw;
     @Column
+    String phone;
+    @Column
     String name;
     @Column
     int point;
@@ -57,5 +59,7 @@ public class User {
     @OneToMany(mappedBy="user_id")
     @JsonIgnore
     private List<Report> reportList = new ArrayList<Report>();
+    
+    
 }
 
